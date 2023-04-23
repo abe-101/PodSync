@@ -3,6 +3,8 @@ import django.contrib.auth.validators
 from django.db import migrations, models
 import django.utils.timezone
 
+import podsync.users.models
+
 
 class Migration(migrations.Migration):
 
@@ -39,8 +41,7 @@ class Migration(migrations.Migration):
                         help_text="Designates that this user has all permissions without explicitly assigning them.",
                         verbose_name="superuser status",
                     ),
-                ),
-                (
+                ),(
                     "username",
                     models.CharField(
                         error_messages={

@@ -34,7 +34,6 @@ class TestUserUpdateView:
         request.user = user
 
         view.request = request
-
         assert view.get_success_url() == f"/users/{user.username}/"
 
     def test_get_object(self, user: User, rf: RequestFactory):
@@ -74,7 +73,6 @@ class TestUserRedirectView:
         request.user = user
 
         view.request = request
-
         assert view.get_redirect_url() == f"/users/{user.username}/"
 
 
@@ -82,7 +80,6 @@ class TestUserDetailView:
     def test_authenticated(self, user: User, rf: RequestFactory):
         request = rf.get("/fake-url/")
         request.user = UserFactory()
-
         response = user_detail_view(request, username=user.username)
 
         assert response.status_code == 200
@@ -90,7 +87,6 @@ class TestUserDetailView:
     def test_not_authenticated(self, user: User, rf: RequestFactory):
         request = rf.get("/fake-url/")
         request.user = AnonymousUser()
-
         response = user_detail_view(request, username=user.username)
         login_url = reverse(settings.LOGIN_URL)
 
